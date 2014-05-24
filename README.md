@@ -3,28 +3,17 @@ Course: Getting-and-Cleaning-Data:-
 To upload Project - Coursera- run_analysis.R
 
     First step: to import the relevant data from different tables provided from the original experiment and assign them to new variables as below: 
-	All the text files in test folder are read and merged first. This created a data frame named data set. Then all text files in train folder appended to it
-	in the following code. This is done in a for loop. Please see below.
+	All the text files in test folder are read and merged first. This created a data frame named data set in the following code. 
 
-test_files_list <- list.files("test",  pattern = "*.txt", full.names = TRUE) 
- 	for (f in test_files_list) { if (!exists("dataset")) {dataset <- read.table(f,sep="\t")}
-		if (exists("dataset")) {temp_dataset <- read.table(f,sep="\t")
-		dataset <- rbind(dataset, temp_dataset)
-		rm(temp_dataset)
-	}
-	
-}
-	
-train_files_list <- list.files("train",  pattern = "*.txt", full.names = TRUE) 
- 	for (f in train_files_list) { if (!exists("dataset")) {dataset <- read.table(f,sep="\t")}
-		if (exists("dataset")) {temp_dataset <- read.table(f,sep="\t")
-		dataset <- rbind(dataset, temp_dataset)
-		rm(temp_dataset)
-	}
-	
-}
+x_test<- read.table("./test/X_test.txt", header=FALSE,sep="")
+y_test<- read.table("./test/y_test.txt", header=FALSE,sep="")
+subject_test<-read.table("./test/subject_test.txt", header=FALSE,sep="")
 
-    *Second step: Now we have a data frame named dataset. This is persisted into a csv file called "MyMergedData.csv".
+x_train<- read.table("./train/X_train.txt", header=FALSE,sep="")
+y_train<- read.table("./train/y_train.txt", header=FALSE,sep="")
+subject_train<-read.table("./train/subject_train.txt", header=FALSE,sep="")
+
+    *Second step: Now we have a data frame named dataset. This is persisted into a text file called "myMergeData.txt".
 
     *Third step: to read the features from features table: 
 		features <- read.table("./features.txt",stringsAsFactors =FALSE, header=FALSE, sep="") 
